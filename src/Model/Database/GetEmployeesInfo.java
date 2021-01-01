@@ -1,12 +1,23 @@
 package Model.Database;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class GetEmployeesInfo {
     private ArrayList<Employee> employeesInfo;
 
-    public GetEmployeesInfo(ArrayList<Employee> employeesInfo){
-        this.employeesInfo = employeesInfo;
+    public GetEmployeesInfo() throws FileNotFoundException {
+        employeesInfo = new ReadSaveFile().getEmployeeInfo();
+    }
+
+    public String[] getEmployeesName(){
+        String[] employeesName = new String[employeesInfo.size()];
+
+        for (int i = 0; i < employeesInfo.size(); i++){
+            employeesName[i] = employeesInfo.get(i).getName();
+        }
+
+        return employeesName;
     }
 
     public Object[][] getEmployeeHourlyRate(){
@@ -35,5 +46,32 @@ public class GetEmployeesInfo {
         }
 
         return result;
+    }
+
+    public void addEmployee(Employee employee){
+        employeesInfo.add(employee);
+
+        WriteSaveFile writeSaveFile = new WriteSaveFile();
+        writeSaveFile.addNewLine(employee.toString());
+    }
+
+    public void removeEmployee(String employeeName){
+        for(int i = 0; i < employeesInfo.size(); i++){
+            if (employeesInfo.get(i).getName().equals(employeeName))
+                employeesInfo.remove(i);
+        }
+
+        updateEmployeeInfo();
+    }
+
+    public void updateEmployeeInfo(){
+        String[] info = new String[employeesInfo.size()];
+
+        for (int i = 0; i < info.length; i++){
+            info[i] = employeesInfo.get(i).toString();
+        }
+
+        WriteSaveFile writeSaveFile = new WriteSaveFile();
+        writeSaveFile.updateSaveFile(info);
     }
 }

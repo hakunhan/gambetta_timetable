@@ -1,10 +1,8 @@
 package Controller.Manager.ManageWorkSchedule;
 
-import Model.Database.DBUtils;
-import Model.Database.EmployeeSqlStatement;
-import Model.Database.ScheduleSqlStatement;
+import Model.Database.Employee;
+import Model.Database.GetEmployeesInfo;
 import View.Manager.ManageEmployeeSchedulePanel;
-import View.Employee.EmployeeFrame;
 import View.Manager.ManagerFrame;
 import utils.NotPossibleException;
 
@@ -12,39 +10,27 @@ import javax.swing.*;
 
 public class AddEmployeeToScheduleController {
     private ManageEmployeeSchedulePanel manageEmployeeSchedulePanel;
-    private DBUtils database = new DBUtils();
     private ManagerFrame frame;
-    private int employee_id;
-    private ScheduleSqlStatement scheduleSqlStatement = new ScheduleSqlStatement();
-    private EmployeeSqlStatement employeeSqlStatement = new EmployeeSqlStatement();
+    private GetEmployeesInfo getEmployeesInfo;
+    private String employeeName;
+    private double employeeHourlyRate;
 
-    public AddEmployeeToScheduleController(ManagerFrame frame, int employee_id){
+    public AddEmployeeToScheduleController(ManagerFrame frame, GetEmployeesInfo getEmployeesInfo,
+                                           String employeeName, double employeeHourlyRate){
         this.frame = frame;
-        this.employee_id = employee_id;
+        this.getEmployeesInfo = getEmployeesInfo;
+        this.employeeName = employeeName;
+        this.employeeHourlyRate = employeeHourlyRate;
     }
 
     private boolean addEmployeeToSchedule(){
-        Object[] arr = scheduleSqlStatement.getEmployeeId();
-
-        for (int i = 0; i < arr.length;i++){
-            if (employee_id == (int) arr[i])
-                return false;
-        }
-        EmployeeSqlStatement employeeSqlStatement = new EmployeeSqlStatement();
-        Object[] checkEmployee = employeeSqlStatement.getEmployee(employee_id);
-
-        if (checkEmployee[0] == null){
-            return false;
-        }
-
-        scheduleSqlStatement.insertIntoSchedule(employee_id, new String[8]);
+        Employee employee = new Employee(employeeName, employeeHourlyRate);
+        getEmployeesInfo.addEmployee(employee);
         return true;
     }
 
     public JPanel updateEmployeeSchedule(){
-        if (!addEmployeeToSchedule())
-            throw new NotPossibleException("Cannot add employee");
-        SwitchEmployeeSchedulePanelController switchEmployeeSchedulePanelController = new SwitchEmployeeSchedulePanelController(frame);
+        SwitchEmployeeSchedulePanelController switchEmployeeSchedulePanelController = new SwitchEmployeeSchedulePanelController(frame, getEmployeesInfo);
         return switchEmployeeSchedulePanelController.getManageEmployeeSchedulePanel();
     }
 }

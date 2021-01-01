@@ -15,6 +15,6 @@ public class SwitchManagerHomePagePanelController {
     }
 
     public JPanel getManagerHomePagePanel(){
-        return new ManagerHomePagePanel(frame);
+        return new ManagerHomePagePanel(frame, frame.getGetEmployeesInfo());
     }
 }

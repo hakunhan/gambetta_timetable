@@ -1,46 +1,20 @@
 package Controller.Manager.Export;
 
-import Model.Database.DBUtils;
-import Model.Database.ScheduleSqlStatement;
+import Model.Database.GetEmployeesInfo;
 import Model.ExcelTable.EmployeeWorkTimeExcelPrinter;
 import Model.ExcelTable.GetTime;
 
 import java.io.IOException;
 
 public class ExportScheduleController {
-    private DBUtils dbUtils;
-    private ScheduleSqlStatement scheduleSqlStatement;
+    private GetEmployeesInfo getEmployeesInfo;
 
-    public ExportScheduleController(){
-        dbUtils = new DBUtils();
-        scheduleSqlStatement = new ScheduleSqlStatement();
-    }
-
-    private int[] getEmployeeId(){
-        Object[] employeeId = scheduleSqlStatement.getEmployeeId();
-        int[] result = new int[employeeId.length];
-
-        for(int i = 0; i < result.length; i++){
-            result[i] = (int) employeeId[i];
-        }
-
-        return result;
-    }
-
-    private Object[][] getEmployeeSchedules(){
-        int[] employeeId = getEmployeeId();
-        Object[][] result = new Object[employeeId.length][8];
-
-        for (int i = 0; i < employeeId.length; i++){
-            Object[] employeeSchedule = scheduleSqlStatement.getScheduleEmployeeWithOutId(employeeId[i]);
-            result[i] = employeeSchedule;
-        }
-
-        return result;
+    public ExportScheduleController(GetEmployeesInfo getEmployeesInfo){
+        this.getEmployeesInfo = getEmployeesInfo;
     }
 
     public void exportSchedule(){
-        Object[][] employeeSchedules = getEmployeeSchedules();
+        Object[][] employeeSchedules = getEmployeesInfo.getEmployeeWeeklySchedule();
         try {
             GetTime time = new GetTime();
             EmployeeWorkTimeExcelPrinter employeeWorkTimeExcelPrinter = new EmployeeWorkTimeExcelPrinter(employeeSchedules);

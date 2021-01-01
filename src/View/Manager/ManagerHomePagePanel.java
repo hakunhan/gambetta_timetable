@@ -7,10 +7,9 @@ package View.Manager;
 
 import Controller.Manager.Export.ExportSalaryController;
 import Controller.Manager.Export.ExportScheduleController;
-import Controller.Manager.HourlyRate.HourlyRateController;
-import Controller.Manager.ManageEmployee.SwitchManageEmployeePanelController;
+import Controller.Manager.HourlyRate.EmployeeHourlyRateController;
 import Controller.Manager.ManageWorkSchedule.SwitchEmployeeSchedulePanelController;
-import View.Manager.ManagerFrame;
+import Model.Database.GetEmployeesInfo;
 
 import javax.swing.*;
 
@@ -20,12 +19,14 @@ import javax.swing.*;
  */
 public class ManagerHomePagePanel extends javax.swing.JPanel {
     private ManagerFrame managerFrame;
+    private GetEmployeesInfo getEmployeesInfo;
 
     /**
      * Creates new form ManagerHomePage
      */
-    public ManagerHomePagePanel(ManagerFrame managerFrame) {
+    public ManagerHomePagePanel(ManagerFrame managerFrame, GetEmployeesInfo getEmployeesInfo) {
         this.managerFrame = managerFrame;
+        this.getEmployeesInfo = getEmployeesInfo;
         initComponents();
     }
 
@@ -151,10 +152,14 @@ public class ManagerHomePagePanel extends javax.swing.JPanel {
     }
 
     private void ExportSalaryButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        ExportSalaryController exportSalaryController = new ExportSalaryController();
-        exportSalaryController.exportEmployeeSalary();
+        if (getEmployeesInfo != null) {
+            ExportSalaryController exportSalaryController = new ExportSalaryController(getEmployeesInfo);
+            exportSalaryController.exportEmployeeSalary();
 
-        JOptionPane.showMessageDialog(this, "Tính lương thành công");
+            JOptionPane.showMessageDialog(this, "Tính lương thành công!");
+        }else{
+            JOptionPane.showMessageDialog(this, "Không thể tính lương!");
+        }
     }
 
     private void ExportScheduleButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,8 +178,8 @@ public class ManagerHomePagePanel extends javax.swing.JPanel {
 
 
     private void HourlyRateButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        HourlyRateController hourlyRateController = new HourlyRateController();
-        if(JOptionPane.showConfirmDialog(this, "The hourly rate is: " + hourlyRateController.getHourlyRate()
+        EmployeeHourlyRateController employeeHourlyRateController = new EmployeeHourlyRateController();
+        if(JOptionPane.showConfirmDialog(this, "The hourly rate is: " + employeeHourlyRateController.getHourlyRate()
                                     + "\n" + "Do you want to change the hourly rate", "Hourly rate", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             String s = JOptionPane.showInputDialog(this, "Enter new hourly rate: ");
             if(s == null){
@@ -183,7 +188,7 @@ public class ManagerHomePagePanel extends javax.swing.JPanel {
             float hourlyRate = 0;
             try{
                 hourlyRate = Float.parseFloat(s);
-                hourlyRateController.updateHourlyRate(hourlyRate);
+                employeeHourlyRateController.updateHourlyRate(hourlyRate);
                 JOptionPane.showMessageDialog(this, "Successfully updated!");
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Wrong hourly rate input!");

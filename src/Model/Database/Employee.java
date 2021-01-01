@@ -92,7 +92,7 @@ public class Employee {
 
     @Override
     public String toString(){
-        return String.format("%s_%f_%s_%s_%s_%s_%s_%s_%s", name, hourlyRate, monday, tuesday, wednesday
+        return String.format("%s_%f_%s_%s_%s_%s_%s_%s_%s\n", name, hourlyRate, monday, tuesday, wednesday
                                                                 ,thursday, friday, saturday, sunday);
     }
 }
