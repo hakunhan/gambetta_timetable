@@ -1,16 +1,16 @@
 package Controller.Manager.HourlyRate;
 
 
-import Model.Database.GetEmployeesInfo;
+import Model.Database.EmployeesInfo;
 
 public class EmployeeHourlyRateController {
-    private GetEmployeesInfo getEmployeesInfo;
+    private EmployeesInfo employeesInfo;
 
-    public EmployeeHourlyRateController(GetEmployeesInfo getEmployeesInfo){
-        this.getEmployeesInfo = getEmployeesInfo;
+    public EmployeeHourlyRateController(EmployeesInfo employeesInfo){
+        this.employeesInfo = employeesInfo;
     }
 
     public Object[][] getEmployeeHourlyRate(){
-        return getEmployeesInfo.getEmployeeHourlyRate();
+        return employeesInfo.getEmployeeHourlyRate();
     }
 }

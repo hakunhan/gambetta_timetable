@@ -8,9 +8,9 @@ package View.Manager;
 import Controller.Manager.ManageWorkSchedule.AddEmployeeToScheduleController;
 import Controller.Manager.ManageWorkSchedule.ConfirmEditEmployeeScheduleController;
 import Controller.Manager.ManageWorkSchedule.RemoveEmployeeScheduleController;
+import Model.Database.EmployeesInfo;
 import View.ViewUtils.*;
 import Controller.Manager.SwitchManagerHomePagePanelController;
-import utils.NotPossibleException;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -23,14 +23,16 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
     private Object[][] employeeSchedule;
     private ManagerFrame managerFrame;
     private ConfirmEditEmployeeScheduleController confirmEditEmployeeScheduleController;
+    private EmployeesInfo employeesInfo;
 
     /**
      * Creates new form ManageEmployeeSchedulePanel
      */
-    public ManageEmployeeSchedulePanel(Object[][] employeeSchedule, ManagerFrame managerFrame) {
+    public ManageEmployeeSchedulePanel(Object[][] employeeSchedule, ManagerFrame managerFrame, EmployeesInfo employeesInfo) {
         this.employeeSchedule = employeeSchedule;
         this.managerFrame = managerFrame;
-        this.confirmEditEmployeeScheduleController = new ConfirmEditEmployeeScheduleController(managerFrame,employeeSchedule);
+        this.confirmEditEmployeeScheduleController = new ConfirmEditEmployeeScheduleController(managerFrame,employeesInfo);
+        this.employeesInfo = employeesInfo;
         initComponents();
     }
 
@@ -53,7 +55,7 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1280, 960));
 
         AddScheduleButton.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
-        AddScheduleButton.setText("Add employee to schedule");
+        AddScheduleButton.setText("Thêm nhân viên vào lịch làm việc");
         AddScheduleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddScheduleButtonActionPerformed(evt);
@@ -64,11 +66,11 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 employeeSchedule,
                 new String [] {
-                        "Id","Name", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Remove"
+                        "Tên", "Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy", "Chử nhật", "Xóa"
                 }
         ) {
             Class[] types = new Class [] {
-                    java.lang.Integer.class,java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -79,9 +81,9 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);
         jTable1.getColumnModel().getColumn(9).setPreferredWidth(5);
         jTable1.setRowHeight(30);
-        jTable1.getColumn("Remove").setCellRenderer(new ButtonRenderer());
-        jTable1.getColumn("Remove").setCellEditor(new EmployeeScheduleButtonEditor(new JCheckBox(),this,
-                "Are you sure want to delete this employee's schedule"));
+        jTable1.getColumn("Xóa").setCellRenderer(new ButtonRenderer());
+        jTable1.getColumn("Xóa").setCellEditor(new EmployeeScheduleButtonEditor(new JCheckBox(),this,
+                "Bạn có chắc chắn muốn xóa nhân viên này khỏi lịch làm việc không?"));
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
@@ -94,7 +96,7 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jScrollPane1);
 
         ConfirmButton.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
-        ConfirmButton.setText("Confirm");
+        ConfirmButton.setText("Đồng ý thay đổi");
         ConfirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ConfirmButtonActionPerformed(evt);
@@ -102,7 +104,7 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
         });
 
         BackButton.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
-        BackButton.setText("Back");
+        BackButton.setText("Quay về");
         BackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackButtonActionPerformed(evt);
@@ -143,20 +145,21 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
 
     private void AddScheduleButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        String s = (String) JOptionPane.showInputDialog(this, "Enter employee id","Add employee to schedule",
-                                                        JOptionPane.PLAIN_MESSAGE);
-        if (s == null){
+        AddNewEmployeePanel addNewEmployeePanel = new AddNewEmployeePanel();
+        int option = JOptionPane.showConfirmDialog(this, addNewEmployeePanel, "Bạn chắc chắn muốn thêm nhân viên vào lịch làm việc?", JOptionPane.YES_NO_OPTION);
+
+        if (option == JOptionPane.NO_OPTION){
             return;
-        }
-        int employee_id = 0;
-        try{
-            employee_id = Integer.parseInt(s);
-            AddEmployeeToScheduleController addEmployeeToScheduleController = new AddEmployeeToScheduleController(managerFrame, employee_id);
-            managerFrame.setContentPane(addEmployeeToScheduleController.updateEmployeeSchedule());
-        }catch(NotPossibleException e){
-            JOptionPane.showMessageDialog(this, "Employee cant be added to schedule");
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(this, "Wrong employee id input!");
+        }else{
+            String[] addEmployee = addNewEmployeePanel.addNewEmployee();
+            AddEmployeeToScheduleController addEmployeeToScheduleController = new AddEmployeeToScheduleController(managerFrame, employeesInfo, addEmployee);
+
+            try{
+                addEmployeeToScheduleController.updateEmployeeSchedule();
+                JOptionPane.showMessageDialog(this, "Thêm nhân viên thành công!");
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(this, "Không thể thêm nhân viên (kiểm tra lại việc nhập dữ liệu)");
+            }
         }
     }
 
@@ -171,7 +174,7 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
 
     private void ConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        if(JOptionPane.showConfirmDialog(null,"Confirm change?", "WARNING",
+        if(JOptionPane.showConfirmDialog(null,"Bạn chắc chắn không?", "WARNING",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             if (confirmEditEmployeeScheduleController.updateAndReturnHomePage(employeeSchedule) == null){
                 throw new NullPointerException("HomePage Panel is null");
@@ -183,15 +186,15 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
                     changedEmployeeSchedule[i][j] = jTable1.getValueAt(i,j);
                 }
             }
-            JOptionPane.showMessageDialog(this, "Successfully updated");
+            JOptionPane.showMessageDialog(this, "Thay đổi thành công!");
             managerFrame.setContentPane(confirmEditEmployeeScheduleController.updateAndReturnHomePage(changedEmployeeSchedule));
         }
     }
 
     public void deleteEmployeeSchedule(){
         int selectedRow = jTable1.getSelectedRow();
-        int employee_id = Integer.parseInt((String)employeeSchedule[selectedRow][0]);
-        RemoveEmployeeScheduleController removeEmployeeScheduleController = new RemoveEmployeeScheduleController(managerFrame, employee_id);
+        String employeeName = (String)employeeSchedule[selectedRow][0];
+        RemoveEmployeeScheduleController removeEmployeeScheduleController = new RemoveEmployeeScheduleController(managerFrame, employeesInfo, employeeName);
         managerFrame.setJPanel(removeEmployeeScheduleController.updateEmployeeSchedule());
     }
 

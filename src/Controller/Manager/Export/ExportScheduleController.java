@@ -1,20 +1,20 @@
 package Controller.Manager.Export;
 
-import Model.Database.GetEmployeesInfo;
+import Model.Database.EmployeesInfo;
 import Model.ExcelTable.EmployeeWorkTimeExcelPrinter;
 import Model.ExcelTable.GetTime;
 
 import java.io.IOException;
 
 public class ExportScheduleController {
-    private GetEmployeesInfo getEmployeesInfo;
+    private EmployeesInfo employeesInfo;
 
-    public ExportScheduleController(GetEmployeesInfo getEmployeesInfo){
-        this.getEmployeesInfo = getEmployeesInfo;
+    public ExportScheduleController(EmployeesInfo employeesInfo){
+        this.employeesInfo = employeesInfo;
     }
 
     public void exportSchedule(){
-        Object[][] employeeSchedules = getEmployeesInfo.getEmployeeWeeklySchedule();
+        Object[][] employeeSchedules = employeesInfo.getEmployeeWeeklySchedule();
         try {
             GetTime time = new GetTime();
             EmployeeWorkTimeExcelPrinter employeeWorkTimeExcelPrinter = new EmployeeWorkTimeExcelPrinter(employeeSchedules);

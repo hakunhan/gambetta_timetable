@@ -1,15 +1,15 @@
 package Controller.Manager.Export;
 
-import Model.Database.GetEmployeesInfo;
+import Model.Database.EmployeesInfo;
 import Model.ExcelTable.EmployeeSalaryExcelPrinter;
 import Model.ExcelTable.ReadEmployeeExcelFile;
 
 import java.io.IOException;
 
 public class ExportSalaryController {
-    private GetEmployeesInfo employeesInfo;
+    private EmployeesInfo employeesInfo;
 
-    public ExportSalaryController(GetEmployeesInfo employeesInfo){
+    public ExportSalaryController(EmployeesInfo employeesInfo){
         this.employeesInfo = employeesInfo;
     }
 

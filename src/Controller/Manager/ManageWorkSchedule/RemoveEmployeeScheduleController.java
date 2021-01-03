@@ -1,30 +1,29 @@
 package Controller.Manager.ManageWorkSchedule;
 
 
-import Model.Database.GetEmployeesInfo;
+import Model.Database.EmployeesInfo;
 import View.Manager.ManagerFrame;
 
 import javax.swing.*;
 
 public class RemoveEmployeeScheduleController {
-    private JPanel manageEmployeeSchedulePanel;
-    private GetEmployeesInfo getEmployeesInfo;
+    private EmployeesInfo employeesInfo;
     private ManagerFrame frame;
     private String employeeName;
 
-    public RemoveEmployeeScheduleController(ManagerFrame frame, GetEmployeesInfo getEmployeesInfo, String employeeName){
+    public RemoveEmployeeScheduleController(ManagerFrame frame, EmployeesInfo employeesInfo, String employeeName){
         this.frame = frame;
-        this.getEmployeesInfo = getEmployeesInfo;
+        this.employeesInfo = employeesInfo;
         this.employeeName = employeeName;
     }
 
     private void removeEmployeeSchedule(){
-        getEmployeesInfo.removeEmployee(employeeName);
+        employeesInfo.removeEmployee(employeeName);
     }
 
     public JPanel updateEmployeeSchedule(){
         removeEmployeeSchedule();
-        SwitchEmployeeSchedulePanelController switchEmployeeSchedulePanelController = new SwitchEmployeeSchedulePanelController(frame, getEmployeesInfo);
+        SwitchEmployeeSchedulePanelController switchEmployeeSchedulePanelController = new SwitchEmployeeSchedulePanelController(frame, employeesInfo);
         return switchEmployeeSchedulePanelController.getManageEmployeeSchedulePanel();
     }
 }

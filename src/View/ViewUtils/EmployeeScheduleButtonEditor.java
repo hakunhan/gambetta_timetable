@@ -1,6 +1,5 @@
 package View.ViewUtils;
 
-import View.Manager.ManageEmployeePanel;
 import View.Manager.ManageEmployeeSchedulePanel;
 
 import javax.swing.*;

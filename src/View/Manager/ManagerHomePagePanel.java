@@ -9,7 +9,7 @@ import Controller.Manager.Export.ExportSalaryController;
 import Controller.Manager.Export.ExportScheduleController;
 import Controller.Manager.HourlyRate.EmployeeHourlyRateController;
 import Controller.Manager.ManageWorkSchedule.SwitchEmployeeSchedulePanelController;
-import Model.Database.GetEmployeesInfo;
+import Model.Database.EmployeesInfo;
 
 import javax.swing.*;
 
@@ -19,14 +19,14 @@ import javax.swing.*;
  */
 public class ManagerHomePagePanel extends javax.swing.JPanel {
     private ManagerFrame managerFrame;
-    private GetEmployeesInfo getEmployeesInfo;
+    private EmployeesInfo employeesInfo;
 
     /**
      * Creates new form ManagerHomePage
      */
-    public ManagerHomePagePanel(ManagerFrame managerFrame, GetEmployeesInfo getEmployeesInfo) {
+    public ManagerHomePagePanel(ManagerFrame managerFrame, EmployeesInfo employeesInfo) {
         this.managerFrame = managerFrame;
-        this.getEmployeesInfo = getEmployeesInfo;
+        this.employeesInfo = employeesInfo;
         initComponents();
     }
 
@@ -147,13 +147,13 @@ public class ManagerHomePagePanel extends javax.swing.JPanel {
 
     private void ManageWorkScheduleButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        SwitchEmployeeSchedulePanelController switchEmployeeSchedulePanelController = new SwitchEmployeeSchedulePanelController(managerFrame);
+        SwitchEmployeeSchedulePanelController switchEmployeeSchedulePanelController = new SwitchEmployeeSchedulePanelController(managerFrame, employeesInfo);
         managerFrame.setJPanel(switchEmployeeSchedulePanelController.getManageEmployeeSchedulePanel());
     }
 
     private void ExportSalaryButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        if (getEmployeesInfo != null) {
-            ExportSalaryController exportSalaryController = new ExportSalaryController(getEmployeesInfo);
+        if (employeesInfo != null) {
+            ExportSalaryController exportSalaryController = new ExportSalaryController(employeesInfo);
             exportSalaryController.exportEmployeeSalary();
 
             JOptionPane.showMessageDialog(this, "Tính lương thành công!");
@@ -163,7 +163,7 @@ public class ManagerHomePagePanel extends javax.swing.JPanel {
     }
 
     private void ExportScheduleButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        ExportScheduleController exportScheduleController = new ExportScheduleController();
+        ExportScheduleController exportScheduleController = new ExportScheduleController(employeesInfo);
         exportScheduleController.exportSchedule();
 
         JOptionPane.showMessageDialog(this, "Tạo lịch làm việc thành công");
@@ -178,7 +178,7 @@ public class ManagerHomePagePanel extends javax.swing.JPanel {
 
 
     private void HourlyRateButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        EmployeeHourlyRateController employeeHourlyRateController = new EmployeeHourlyRateController();
+        EmployeeHourlyRateController employeeHourlyRateController = new EmployeeHourlyRateController(employeesInfo);
         if(JOptionPane.showConfirmDialog(this, "The hourly rate is: " + employeeHourlyRateController.getHourlyRate()
                                     + "\n" + "Do you want to change the hourly rate", "Hourly rate", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             String s = JOptionPane.showInputDialog(this, "Enter new hourly rate: ");

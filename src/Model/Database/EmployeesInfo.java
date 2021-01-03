@@ -3,10 +3,10 @@ package Model.Database;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class GetEmployeesInfo {
+public class EmployeesInfo {
     private ArrayList<Employee> employeesInfo;
 
-    public GetEmployeesInfo() throws FileNotFoundException {
+    public EmployeesInfo() throws FileNotFoundException {
         employeesInfo = new ReadSaveFile().getEmployeeInfo();
     }
 
@@ -46,6 +46,26 @@ public class GetEmployeesInfo {
         }
 
         return result;
+    }
+
+    public void setEmployeeWeeklySchedule(Object[][] employeeSchedule){
+        for (int i = 0; i < employeesInfo.size(); i++){
+            employeesInfo.get(i).setMonday((String) employeeSchedule[i][1]);
+            employeesInfo.get(i).setTuesday((String) employeeSchedule[i][2]);
+            employeesInfo.get(i).setWednesday((String) employeeSchedule[i][3]);
+            employeesInfo.get(i).setThursday((String) employeeSchedule[i][4]);
+            employeesInfo.get(i).setFriday((String) employeeSchedule[i][5]);
+            employeesInfo.get(i).setSaturday((String) employeeSchedule[i][6]);
+            employeesInfo.get(i).setSunday((String) employeeSchedule[i][7]);
+        }
+    }
+
+    public ArrayList<Employee> getEmployeesInfo() {
+        return employeesInfo;
+    }
+
+    public void setEmployeesInfo(ArrayList<Employee> employeesInfo) {
+        this.employeesInfo = employeesInfo;
     }
 
     public void addEmployee(Employee employee){

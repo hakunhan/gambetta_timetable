@@ -5,7 +5,7 @@
  */
 package View.Manager;
 
-import Model.Database.GetEmployeesInfo;
+import Model.Database.EmployeesInfo;
 
 import javax.swing.*;
 import java.io.FileNotFoundException;
@@ -15,12 +15,12 @@ import java.io.FileNotFoundException;
  * @author HieuHoang
  */
 public class ManagerFrame extends javax.swing.JFrame {
-    private GetEmployeesInfo getEmployeesInfo;
+    private EmployeesInfo employeesInfo;
     /**
      * Creates new form NewJFrame
      */
-    public ManagerFrame(GetEmployeesInfo getEmployeesInfo) {
-        this.getEmployeesInfo = getEmployeesInfo;
+    public ManagerFrame(EmployeesInfo employeesInfo) {
+        this.employeesInfo = employeesInfo;
         initComponents();
     }
 
@@ -81,9 +81,9 @@ public class ManagerFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    GetEmployeesInfo getEmployeesInfo = new GetEmployeesInfo();
-                    ManagerFrame managerFrame = new ManagerFrame(getEmployeesInfo);
-                    managerFrame.setJPanel(new ManagerHomePagePanel(managerFrame, managerFrame.getEmployeesInfo));
+                    EmployeesInfo employeesInfo = new EmployeesInfo();
+                    ManagerFrame managerFrame = new ManagerFrame(employeesInfo);
+                    managerFrame.setJPanel(new ManagerHomePagePanel(managerFrame, managerFrame.employeesInfo));
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -92,8 +92,8 @@ public class ManagerFrame extends javax.swing.JFrame {
         });
     }
 
-    public GetEmployeesInfo getGetEmployeesInfo(){
-        return this.getEmployeesInfo;
+    public EmployeesInfo getGetEmployeesInfo(){
+        return this.employeesInfo;
     }
 
     public void setJPanel(JPanel jPanel){
