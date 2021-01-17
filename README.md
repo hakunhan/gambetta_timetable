@@ -34,3 +34,7 @@ Lưu ý:
 Không được đổi tên lịch làm việc đã được tạo ra bởi phần mềm vì khi đó phần mềm không thể tính được lương do tên thay đổi.
 
 Nếu sửa lịch bên trong file lịch làm việc vẫn phải giữ theo mẫu (13:00 - 20:00) để phần mềm có thể tính được.
+
+Nếu gặp vấn đề hãy liên lạc lại cho tôi qua:
+https://www.facebook.com/hakunhan/
+
