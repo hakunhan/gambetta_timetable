@@ -3,6 +3,8 @@ Phần mềm hỗ trợ cửa hàng quản lý lịch làm việc của nhân vi
 
 Hoàn thiện phiên bản 1.0, tải trực tiếp file jar trong folder: gambetta_timetable_jar.
 
+Chú ý: không được di chuyển hay xoá file saveFile.txt. Nó chứa thông tin lịch làm việc của phần mềm.
+
 * Hướng dẫn thêm nhân viên vào lịch làm việc:
 1. Nhấn vào "Sắp xếp lịch làm việc".
 2. Nhấn vào "Thêm nhân viên vào lịch làm việc"
