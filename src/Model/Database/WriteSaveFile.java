@@ -8,22 +8,22 @@ import java.io.IOException;
 public class WriteSaveFile {
     private File saveFile;
     public WriteSaveFile() {
-        File mkDir = new File("\\saveFile");
-        if (!mkDir.exists()){
-            mkDir.mkdirs();
-            saveFile = new File("\\saveFile\\saveFile.txt");
-            if(!saveFile.exists()){
-                try {
-                    saveFile.createNewFile();
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
+        saveFile = new File("saveFile.txt");
+        if(!saveFile.exists()){
+            try {
+                saveFile.createNewFile();
+            }catch (IOException e){
+                e.printStackTrace();
             }
         }
     }
 
     public void updateSaveFile(String[] lines){
         try{
+            if (lines.length == 0 || lines == null){
+                saveFile.createNewFile();
+                return;
+            }
             FileWriter writer = new FileWriter(saveFile);
             for (String line: lines){
                 writer.write(line);

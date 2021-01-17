@@ -9,6 +9,7 @@ import Model.Database.EmployeesInfo;
 
 import javax.swing.*;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  *
@@ -85,6 +86,8 @@ public class ManagerFrame extends javax.swing.JFrame {
                     ManagerFrame managerFrame = new ManagerFrame(employeesInfo);
                     managerFrame.setJPanel(new ManagerHomePagePanel(managerFrame, managerFrame.employeesInfo));
                 } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
 

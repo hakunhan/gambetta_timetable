@@ -179,20 +179,10 @@ public class ManagerHomePagePanel extends javax.swing.JPanel {
 
     private void HourlyRateButtonActionPerformed(java.awt.event.ActionEvent evt) {
         EmployeeHourlyRateController employeeHourlyRateController = new EmployeeHourlyRateController(employeesInfo);
-        if(JOptionPane.showConfirmDialog(this, "The hourly rate is: " + employeeHourlyRateController.getHourlyRate()
-                                    + "\n" + "Do you want to change the hourly rate", "Hourly rate", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-            String s = JOptionPane.showInputDialog(this, "Enter new hourly rate: ");
-            if(s == null){
-                return;
-            }
-            float hourlyRate = 0;
-            try{
-                hourlyRate = Float.parseFloat(s);
-                employeeHourlyRateController.updateHourlyRate(hourlyRate);
-                JOptionPane.showMessageDialog(this, "Successfully updated!");
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(this, "Wrong hourly rate input!");
-            }
+        ManageHourlyRatePanel manageHourlyRatePanel = new ManageHourlyRatePanel(employeeHourlyRateController.getEmployeeHourlyRate(), managerFrame, employeesInfo);
+        if(JOptionPane.showConfirmDialog(this, manageHourlyRatePanel
+                                   , "Hourly rate", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            
         }
     }
 

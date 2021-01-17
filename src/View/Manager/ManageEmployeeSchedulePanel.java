@@ -66,7 +66,7 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 employeeSchedule,
                 new String [] {
-                        "Tên", "Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy", "Chử nhật", "Xóa"
+                        "Tên", "Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy", "Chủ nhật", "Xóa"
                 }
         ) {
             Class[] types = new Class [] {
@@ -78,8 +78,7 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
 
             }
         });
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);
-        jTable1.getColumnModel().getColumn(9).setPreferredWidth(5);
+        jTable1.getColumnModel().getColumn(8).setPreferredWidth(5);
         jTable1.setRowHeight(30);
         jTable1.getColumn("Xóa").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Xóa").setCellEditor(new EmployeeScheduleButtonEditor(new JCheckBox(),this,
@@ -87,7 +86,7 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        for (int i = 0; i < 10; i++){
+        for (int i = 0; i < 9; i++){
             jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
 
@@ -146,7 +145,7 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
     private void AddScheduleButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         AddNewEmployeePanel addNewEmployeePanel = new AddNewEmployeePanel();
-        int option = JOptionPane.showConfirmDialog(this, addNewEmployeePanel, "Bạn chắc chắn muốn thêm nhân viên vào lịch làm việc?", JOptionPane.YES_NO_OPTION);
+        int option = JOptionPane.showConfirmDialog(this, addNewEmployeePanel, "Thêm nhân viên vào lịch làm việc", JOptionPane.YES_NO_OPTION);
 
         if (option == JOptionPane.NO_OPTION){
             return;
@@ -158,6 +157,7 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
                 addEmployeeToScheduleController.updateEmployeeSchedule();
                 JOptionPane.showMessageDialog(this, "Thêm nhân viên thành công!");
             }catch (Exception e){
+                e.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Không thể thêm nhân viên (kiểm tra lại việc nhập dữ liệu)");
             }
         }

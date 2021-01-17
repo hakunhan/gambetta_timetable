@@ -2,16 +2,17 @@ package Model.Database;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ReadSaveFile {
     private File saveFile;
 
-    public ReadSaveFile() throws FileNotFoundException {
-        saveFile = new File("\\saveFile\\saveFile.txt");
+    public ReadSaveFile() throws IOException {
+        saveFile = new File("saveFile.txt");
         if (!saveFile.exists()){
-            throw new FileNotFoundException("Cant find save file!");
+            saveFile.createNewFile();
         }
     }
 
