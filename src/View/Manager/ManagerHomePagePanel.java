@@ -40,32 +40,30 @@ public class ManagerHomePagePanel extends javax.swing.JPanel {
     private void initComponents() {
 
         ManagerNameLable = new javax.swing.JLabel();
-        ManagerProfileButton = new javax.swing.JButton();
         ManageWorkScheduleButton = new javax.swing.JButton();
         ExportSalaryButton = new javax.swing.JButton();
-        ManageEmployeeButton = new javax.swing.JButton();
         ExportScheduleButton = new javax.swing.JButton();
         ExitButton = new javax.swing.JButton();
         HourlyRateButton = new javax.swing.JButton();
 
         setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280, 960));
+        setPreferredSize(new java.awt.Dimension(900, 600));
 
-        ManagerNameLable.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        ManagerNameLable.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         ManagerNameLable.setText("Xin chào, Gambetta!" );
 
-        ManageWorkScheduleButton.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        ManageWorkScheduleButton.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         ManageWorkScheduleButton.setText("Sắp xếp lịch làm việc");
-        ManageWorkScheduleButton.setPreferredSize(new java.awt.Dimension(300, 80));
+        ManageWorkScheduleButton.setPreferredSize(new java.awt.Dimension(200, 40));
         ManageWorkScheduleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ManageWorkScheduleButtonActionPerformed(evt);
             }
         });
 
-        ExportSalaryButton.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        ExportSalaryButton.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         ExportSalaryButton.setText("Tính lương của nhân viên");
-        ExportSalaryButton.setPreferredSize(new java.awt.Dimension(300, 80));
+        ExportSalaryButton.setPreferredSize(new java.awt.Dimension(200, 40));
         ExportSalaryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ExportSalaryButtonActionPerformed(evt);
@@ -73,9 +71,9 @@ public class ManagerHomePagePanel extends javax.swing.JPanel {
         });
 
 
-        ExportScheduleButton.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        ExportScheduleButton.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         ExportScheduleButton.setText("Tạo lịch làm việc cho tháng này");
-        ExportScheduleButton.setPreferredSize(new java.awt.Dimension(300, 80));
+        ExportScheduleButton.setPreferredSize(new java.awt.Dimension(200, 40));
         ExportScheduleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ExportScheduleButtonActionPerformed(evt);
@@ -90,7 +88,7 @@ public class ManagerHomePagePanel extends javax.swing.JPanel {
             }
         });
 
-        HourlyRateButton.setFont(new java.awt.Font("Times New Roman", 0, 30)); // NOI18N
+        HourlyRateButton.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         HourlyRateButton.setText("Chỉnh lương theo giờ của nhân viên");
         HourlyRateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,22 +103,20 @@ public class ManagerHomePagePanel extends javax.swing.JPanel {
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(49, 49, 49)
                                 .addComponent(ManagerNameLable, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(250, 250, 250)
-                                .addComponent(HourlyRateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60)
+                                .addComponent(HourlyRateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ManagerProfileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(42, 42, 42))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(74, 74, 74)
+                                .addGap(80, 80, 80)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(ManageEmployeeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                                         .addComponent(ExportScheduleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(ManageWorkScheduleButton, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+                                        .addComponent(ManageWorkScheduleButton, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                                         .addComponent(ExportSalaryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(108, 108, 108))
         );
@@ -130,16 +126,15 @@ public class ManagerHomePagePanel extends javax.swing.JPanel {
                                 .addGap(29, 29, 29)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(ManagerNameLable, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(ManagerProfileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(HourlyRateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(201, 201, 201)
+                                .addGap(80, 80, 80)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(ManageWorkScheduleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(ManageEmployeeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(189, 189, 189)
+                                        .addComponent(ManageWorkScheduleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        )
+                                .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(ExportScheduleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(ExportSalaryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(ExportScheduleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ExportSalaryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                                 .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -191,10 +186,8 @@ public class ManagerHomePagePanel extends javax.swing.JPanel {
     private javax.swing.JButton ExitButton;
     private javax.swing.JButton ExportSalaryButton;
     private javax.swing.JButton ExportScheduleButton;
-    private javax.swing.JButton ManageEmployeeButton;
     private javax.swing.JButton ManageWorkScheduleButton;
     private javax.swing.JLabel ManagerNameLable;
-    private javax.swing.JButton ManagerProfileButton;
     private javax.swing.JButton HourlyRateButton;
     // End of variables declaration
 }
