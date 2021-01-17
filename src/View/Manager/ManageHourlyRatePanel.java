@@ -45,7 +45,7 @@ public class ManageHourlyRatePanel extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
 
         setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280/3, 960/3));
+        setPreferredSize(new java.awt.Dimension(1280/2, 960/2));
 
 
         jTable1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -99,7 +99,17 @@ public class ManageHourlyRatePanel extends javax.swing.JPanel {
         );
     }// </editor-fold>
 
+    public Object[][] updateHourlyRate(){
+        Object[][] changedEmployeeSchedule = new Object[jTable1.getRowCount()][10];
 
+        for(int i = 0; i < changedEmployeeSchedule.length; i++){
+            for (int j = 0; j < 2; j++){
+                changedEmployeeSchedule[i][j] = jTable1.getValueAt(i,j);
+            }
+        }
+
+        return changedEmployeeSchedule;
+    }
 
     // Variables declaration - do not modify
     private javax.swing.JScrollPane jScrollPane1;

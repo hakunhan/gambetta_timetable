@@ -1,5 +1,7 @@
 package Model.Database;
 
+import utils.NotPossibleException;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +35,7 @@ public class EmployeesInfo {
     }
 
     public Object[][] getEmployeeWeeklySchedule(){
-        Object[][] result = new Object[employeesInfo.size()][9];
+        Object[][] result = new Object[employeesInfo.size()][8];
 
         for (int i = 0; i < employeesInfo.size(); i++){
             result[i][0] = employeesInfo.get(i).getName();
@@ -59,6 +61,19 @@ public class EmployeesInfo {
             employeesInfo.get(i).setSaturday((String) employeeSchedule[i][6]);
             employeesInfo.get(i).setSunday((String) employeeSchedule[i][7]);
         }
+        updateEmployeeInfo();
+    }
+
+    public void setEmployeeHourlyRate(Object[][] employeeHourlyRate) throws NotPossibleException{
+        try {
+            for (int i = 0; i < employeesInfo.size(); i++) {
+                employeesInfo.get(i).setHourlyRate((Double) employeeHourlyRate[i][1]);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            throw new NotPossibleException("");
+        }
+
         updateEmployeeInfo();
     }
 

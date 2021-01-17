@@ -120,7 +120,7 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1369, Short.MAX_VALUE)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(ConfirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(ConfirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -135,10 +135,10 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
                                         .addComponent(AddScheduleButton, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
                                         .addComponent(BackButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(ConfirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(436, 436, 436))
+                                .addGap(250, 250, 250))
         );
     }// </editor-fold>
 
@@ -154,7 +154,7 @@ public class ManageEmployeeSchedulePanel extends javax.swing.JPanel {
             AddEmployeeToScheduleController addEmployeeToScheduleController = new AddEmployeeToScheduleController(managerFrame, employeesInfo, addEmployee);
 
             try{
-                addEmployeeToScheduleController.updateEmployeeSchedule();
+                managerFrame.setJPanel(addEmployeeToScheduleController.updateEmployeeSchedule());
                 JOptionPane.showMessageDialog(this, "Thêm nhân viên thành công!");
             }catch (Exception e){
                 e.printStackTrace();

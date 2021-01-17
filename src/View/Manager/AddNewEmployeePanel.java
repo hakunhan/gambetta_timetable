@@ -39,11 +39,11 @@ public class AddNewEmployeePanel extends javax.swing.JPanel {
 
         name.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         name.setText("Tên nhân viên: ");
-        name.setPreferredSize(new java.awt.Dimension(90, 40));
+        name.setPreferredSize(new java.awt.Dimension(140, 40));
 
         hourlyRate.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         hourlyRate.setText("Lương theo giờ: ");
-        hourlyRate.setPreferredSize(new java.awt.Dimension(90, 40));
+        hourlyRate.setPreferredSize(new java.awt.Dimension(140, 40));
 
         inputName.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 

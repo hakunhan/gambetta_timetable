@@ -1,8 +1,7 @@
 package Model.Database;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 
 public class WriteSaveFile {
@@ -24,7 +23,7 @@ public class WriteSaveFile {
                 saveFile.createNewFile();
                 return;
             }
-            FileWriter writer = new FileWriter(saveFile);
+            Writer writer = new OutputStreamWriter(new FileOutputStream(saveFile), StandardCharsets.UTF_8);
             for (String line: lines){
                 writer.write(line);
             }
@@ -37,7 +36,7 @@ public class WriteSaveFile {
 
     public void addNewLine(String line){
         try{
-            FileWriter writer = new FileWriter(saveFile, true);
+            Writer writer = new OutputStreamWriter(new FileOutputStream(saveFile, true), StandardCharsets.UTF_8);
             writer.write(line);
             writer.flush();
             writer.close();

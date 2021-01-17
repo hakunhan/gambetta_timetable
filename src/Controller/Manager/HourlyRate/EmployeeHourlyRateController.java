@@ -2,6 +2,7 @@ package Controller.Manager.HourlyRate;
 
 
 import Model.Database.EmployeesInfo;
+import utils.NotPossibleException;
 
 public class EmployeeHourlyRateController {
     private EmployeesInfo employeesInfo;
@@ -12,5 +13,9 @@ public class EmployeeHourlyRateController {
 
     public Object[][] getEmployeeHourlyRate(){
         return employeesInfo.getEmployeeHourlyRate();
+    }
+
+    public void updateEmployeeHourlyRate(Object[][] newHourlyRate) throws NotPossibleException {
+        employeesInfo.setEmployeeHourlyRate(newHourlyRate);
     }
 }

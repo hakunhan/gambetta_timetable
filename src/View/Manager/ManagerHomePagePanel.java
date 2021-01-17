@@ -10,6 +10,7 @@ import Controller.Manager.Export.ExportScheduleController;
 import Controller.Manager.HourlyRate.EmployeeHourlyRateController;
 import Controller.Manager.ManageWorkSchedule.SwitchEmployeeSchedulePanelController;
 import Model.Database.EmployeesInfo;
+import utils.NotPossibleException;
 
 import javax.swing.*;
 
@@ -176,8 +177,14 @@ public class ManagerHomePagePanel extends javax.swing.JPanel {
         EmployeeHourlyRateController employeeHourlyRateController = new EmployeeHourlyRateController(employeesInfo);
         ManageHourlyRatePanel manageHourlyRatePanel = new ManageHourlyRatePanel(employeeHourlyRateController.getEmployeeHourlyRate(), managerFrame, employeesInfo);
         if(JOptionPane.showConfirmDialog(this, manageHourlyRatePanel
-                                   , "Hourly rate", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-            
+                                   , "Sửa lương theo giờ của nhân viên", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            Object[][] updateHourlyRate = manageHourlyRatePanel.updateHourlyRate();
+            try {
+                employeeHourlyRateController.updateEmployeeHourlyRate(updateHourlyRate);
+                JOptionPane.showMessageDialog(this, "Chỉnh sửa thành công!");
+            }catch (NotPossibleException e){
+                JOptionPane.showMessageDialog(this, "Không thể sửa lương theo giờ của nhân viên (xem lại việc nhập lương)");
+            }
         }
     }
 

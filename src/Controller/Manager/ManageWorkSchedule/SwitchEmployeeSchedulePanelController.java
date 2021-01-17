@@ -22,7 +22,10 @@ public class SwitchEmployeeSchedulePanelController {
         Object[][] employeeWeeklySchedules = employeesInfo.getEmployeeWeeklySchedule();
         Object[][] employeeSchedules = new Object[employeeWeeklySchedules.length][9];
         for (int i = 0; i < employeeWeeklySchedules.length; i++){
-            employeeSchedules[i] = employeeWeeklySchedules[i];
+            for (int j = 0; j < employeeWeeklySchedules[i].length; j++){
+                employeeSchedules[i][j] = employeeWeeklySchedules[i][j];
+            }
+
             employeeSchedules[i][8] = "\u00D8";
         }
 

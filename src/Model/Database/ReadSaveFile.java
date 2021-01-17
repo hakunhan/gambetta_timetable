@@ -1,8 +1,7 @@
 package Model.Database;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,13 +15,13 @@ public class ReadSaveFile {
         }
     }
 
-    public ArrayList<Employee> getEmployeeInfo() throws FileNotFoundException {
+    public ArrayList<Employee> getEmployeeInfo() throws IOException {
         ArrayList<Employee> employeesInfo = new ArrayList<>();
         try {
-            Scanner employeeInfoReader = new Scanner(saveFile);
+            BufferedReader employeeInfoReader = new BufferedReader(new InputStreamReader(new FileInputStream("saveFile.txt"), StandardCharsets.UTF_8));
 
-            while (employeeInfoReader.hasNextLine()){
-                String data = employeeInfoReader.nextLine();
+            while (employeeInfoReader.ready()){
+                String data = employeeInfoReader.readLine();
                 String[] employeeData = data.split("_");
 
 
