@@ -20,8 +20,8 @@ Chú ý: không được di chuyển hay xoá file saveFile.txt. Nó chứa thô
 
 * Hướng dẫn sửa lịch làm việc:
 1. Nhấn vào "Sắp xếp lịch làm việc" để sửa lịch làm việc rồi nhấn vào "Đồng ý thay đổi".
-
-Lưu ý: khi sửa lịch làm việc của nhân viên phải theo mẫu như thế này: (13:00 - 20:00) dưới ô thuộc ngày trong tuần (thứ 2, thứ 3, ...). Nếu sửa sai mẫu thì sẽ ảnh hưởng đến việc tính lương
+2. Chỉnh lại kích cỡ (di chuột ra ngoài rìa phần mềm cho đến khi chuột biến thành mũi tên 2 chiều, giữ chuột trái và kéo sang bên phải) để trở về màn hình chính.
+Lưu ý: khi sửa lịch làm việc của nhân viên phải theo mẫu như thế này: (13:00 - 20:00) dưới ô thuộc ngày trong tuần (thứ 2, thứ 3, ...). Nếu sửa sai mẫu thì sẽ ảnh hưởng đến việc tính lương.
 
 * Hướng dẫn tạo lịch làm việc cho tháng này:
 1. Nhấn vào "Tạo lịch làm việc cho tháng này".
