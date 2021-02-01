@@ -12,9 +12,9 @@ Chú ý: không được di chuyển hay xoá file saveFile.txt. Nó chứa thô
   
  Ví dụ: 
    
-   Nhân viên Hiếu có lương theo giờ là 18,000 đồng 1 giờ. Nhập tên nhân viên là Hiếu và lương theo giờ là 18.
+   Nhân viên Hiếu có lương theo giờ là 18000 đồng 1 giờ. Nhập tên nhân viên là Hiếu và lương theo giờ là 18.
    
-   Nhân viến Hiếu Thứ Hai có lương theo giờ là 18,500 đồng 1 giờ. Nhập tên nhân viên là Hiếu2 và lương theo giờ là 18.5.
+   Nhân viến Hiếu Thứ Hai có lương theo giờ là 18500 đồng 1 giờ. Nhập tên nhân viên là Hiếu2 và lương theo giờ là 18.5.
        
    Lưu ý: Khi nhập tên nhân viên hãy viết ngắn để thể hiện đầy đủ tên nhân viên.
 
@@ -36,6 +36,8 @@ Lưu ý:
 Không được đổi tên lịch làm việc đã được tạo ra bởi phần mềm vì khi đó phần mềm không thể tính được lương do tên thay đổi.
 
 Nếu sửa lịch bên trong file lịch làm việc vẫn phải giữ theo mẫu (13:00 - 20:00) để phần mềm có thể tính được.
+
+Trong trường hợp không mở được phần mềm, hãy mở saveFile.txt. Nếu sau tên có dấu phẩy "," hãy thay bằng dấu chấm "." rồi lưu lại và đóng saveFile.txt .
 
 Nếu gặp vấn đề hãy liên lạc lại cho tôi qua:
 https://www.facebook.com/hakunhan/
